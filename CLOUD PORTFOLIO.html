@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Portfolio - Zayd Rahman</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+	.image-container {
+		display: flex;          
+		justify-content: center; 
+		align-items: center;    
+		margin: 20px 0;         
+	}
+
+	.image-container img {
+		max-width: 100%;        
+		height: auto;          
+	}
+</style>
+</head>
+<body>
+
+	<div class="resume">
+	
+		<div class="top-section">
+			<div class="headshot-container">
+				<img src="Cloud Logo.jpg" alt="Zayd" class="logo">
+			</div>
+			<div class="contact-info">
+				<h1>Zayd Rahman</h1>
+				<p>Aspiring AWS Cloud Solutions Architect | 
+					<i class="fas fa-envelope"></i> 
+					<a href="mailto:zaydurrahman@hotmail.co.uk">zaydurrahman@hotmail.co.uk</a>
+				</p>
+				<div class="container">
+					<p>
+						<a href="https://www.linkedin.com/in/zarahman/" target="_blank">
+							<i class="fab fa-linkedin"></i> LinkedIn profile
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+	
+		<div class="nav-container">
+			<a href="index.html"><i class="fas fa-home"></i> HOME </a>
+			<a href="PROJECTS.html">PROJECTS</a>
+			<a href="QUALIFICATIONS.html">QUALIFICATIONS</a>
+			<a href="KEY SKILLS.html">KEY SKILLS</a>
+			<a href="KEY ACHIEVEMENTS.html">KEY ACHIEVEMENTS</a>
+			<a href="WORK HISTORY.html">WORK HISTORY</a>
+			<a href="EDUCATION.html">EDUCATION</a>
+		</div>
+		
+		<div class="abstract-banner"></div>
+
+    <section class="resume-section" id="experience">
+		<a href="PROJECTS.html" class="back-to-projects">
+			<i class="fas fa-arrow-left" style="color: #4A90E2;"></i> Back to Projects
+		</a>
+		
+
+<p>
+	<h2>Cloud Portfolio</h2>
+</p>
+			<p>This site was created using serverless technologies on AWS including S3, Route53, Cloudfront CDN and ACM.
+				The site was coded using HTML, CSS and Javascript, these files were put into an S3 bucket and enabled with static website hosting. I set up the domain name and records
+				to point to the bucket using Route53. Lastly I created a certificate, linked it to a cloudfront distribution and updated the Route53 record to connect to that distribution for the site to be accessible.
+				<p>
+					<div class="image-container">
+						<img src="sitediagramhq.jpeg" alt="Site Architecture" width="1000" height="900">
+					</div></p>
