@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Portfolio - Zayd Rahman</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+	.image-container {
+		display: flex;          
+		justify-content: center; 
+		align-items: center;    
+		margin: 20px 0;         
+	}
+
+	.image-container img {
+		max-width: 100%;        
+		height: auto;          
+	}
+</style>
+</head>
+<body>
+
+	<div class="resume">
+	
+		<div class="top-section">
+			<div class="headshot-container">
+				<img src="Cloud Logo.jpg" alt="Zayd" class="logo">
+			</div>
+			<div class="contact-info">
+				<h1>Zayd Rahman</h1>
+				<p>Aspiring AWS Cloud Solutions Architect | 
+					<i class="fas fa-envelope"></i> 
+					<a href="mailto:zaydurrahman@hotmail.co.uk">zaydurrahman@hotmail.co.uk</a>
+				</p>
+				<div class="container">
+					<p>
+						<a href="https://www.linkedin.com/in/zarahman/" target="_blank">
+							<i class="fab fa-linkedin"></i> LinkedIn profile
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+	
+		<div class="nav-container">
+			<a href="index.html"><i class="fas fa-home"></i> HOME </a>
+			<a href="PROJECTS.html">PROJECTS</a>
+			<a href="QUALIFICATIONS.html">QUALIFICATIONS</a>
+			<a href="KEY SKILLS.html">KEY SKILLS</a>
+			<a href="KEY ACHIEVEMENTS.html">KEY ACHIEVEMENTS</a>
+			<a href="WORK HISTORY.html">WORK HISTORY</a>
+			<a href="EDUCATION.html">EDUCATION</a>
+		</div>
+		
+		<div class="abstract-banner"></div>
+
+	<section class="resume-section" id="experience">
+		<a href="PROJECTS.html" class="back-to-projects">
+			<i class="fas fa-arrow-left" style="color: #4A90E2;"></i> Back to Projects
+		</a>
+
+        <h2>Highly Available Web Application</h2>
+			<p>Overview:</p>
+			<p>This project involved building a basic web application with a robust and scalable architecture. The application was developed as a test for e92plus (my former employer) who required a reliable blog site that can handle peak traffic. The company intended to release weekly articles which would be opened by hundreds of people from their laptops on the browser, high availability & failover were priorities in the event of a component failure or high traffic demands. A test application was deployed on AWS using an NGINX web server, the following services were used: 
+				</p>
+                
+                <ul>
+                    <li>
+                        <span class="degree">EC2 Instances</span>
+                        <p>For hosting the web application </p>
+                    </li>
+                    <li>
+                        <span class="degree">Elastic Load Balancer</span>
+                        <p>To distribute incoming traffic across multiple EC2 instances to ensure even load distribution </p>
+                    </li>
+                    <li>
+                        <span class="degree">Auto Scaling Group</span>
+                        <p>To automatically scale the number of instances up or down based on demand, maintain health, availability of the application and optimize cost.</p>
+                    </li>
+                    <li>
+                        <span class="degree">CloudWatch </span>
+                        <p>To set up monitoring and alerts once CPU utilization reaches a certain threshold</p>
+                    </li>
+                </ul>
+
+				<div class="image-container">
+					<a href="HA web application.jpeg" id="openImageLink" target="_blank">
+						<img src="HA web application.jpeg" alt="Site Architecture" width="1000" height="900">
+					</a>
+				</div>
+
+			<p>Deployment steps</p>
+			<P>1. Create a Launch template</P>
+			<ul>
+				<li>
+					<p>EC2 launch template was configured with a Amazon Linux 2023 AMI, T3 micro instance and a key pair. </p>
+				</li>
+				<li>
+					<p>I used the launch template to set up NGINX as it ensures that every instance is configured consistently, which is crucial for scaling and load balancing.</p>
+				</li>
+
+				<div class="image-container">
+					<a href="launch template.png" id="openImageLink" target="_blank">
+						<img src="launch template.png" alt="Site Architecture" width="1000" height="900">
+					</a>
+				</div>
+
+				<p>Installed NGINX using the following script to automatically install and configure the web server. This was entered in the 'Advanced details' section under User data when creating the launch template.</p>
+				<div class="image-container">
+					<a href="NGINX script.png" id="openImageLink" target="_blank">
+						<img src="NGINX script.png" alt="Site Architecture" width="1000" height="900">
+					</a>
+				</div>
+			
+			<p>2. Security Group configuration</p>
+			<ul>
+				<li>
+					<p>Configured the security group to allow inbound HTTP (port 80) and SSH (port 22) traffic from the load balancer.</p>
+				</li>
+				<li>
+					<p>I created a security group for the load balancer to allow incoming HTTP/HTTPS traffic from the internet.</p>
+				</li>
+			</ul>
+			<div class="image-container">
+				<a href="security group.png" id="openImageLink" target="_blank">
+					<img src="security group.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+				<p>	Tested the launch template configuration by launching an instance, then opening the public IP address. 
+					I hosted a sample web application on NGINX, tested with a simple HTML file.</p>
+					<div class="image-container">
+						<a href="template test.png" id="openImageLink" target="_blank">
+							<img src="template test.png" alt="Site Architecture" width="1000" height="900">
+						</a>
+					</div>
+			
+			<p>3. Configure the application load balancer and add the ALB1 security group</p>
+			<ul>
+			<li>
+				<p>ALB created for HTTP/HTTPS traffic</p>
+			</li>
+			<li>
+				<p>Configured the load balancer to forward traffic to the Auto scaling group instances.</p>
+			</li>
+			<li>
+				<p>Health checks were set up to monitor instance health and ensure that only healthy instances receive traffic.</p>
+			</li>
+			<li>
+				<p>Two Availability zones selected for high availability and fault tolerance.</p>
+			</li>
+			</ul>
+			<div class="image-container">
+				<a href="load balancer config.png" id="openImageLink" target="_blank">
+					<img src="load balancer config.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+			<div class="image-container">
+				<a href="load balancer config 2.png" id="openImageLink" target="_blank">
+					<img src="load balancer config 2.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<p>	Selecting the EC2 instance for the load balancer to distribute traffic to, 
+			</p>
+			<div class="image-container">
+				<a href="load balancer targets.png" id="openImageLink" target="_blank">
+					<img src="load balancer targets.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<P>Application Load Balancer details:</P>
+			<div class="image-container">
+				<a href="ALB review.png" id="openImageLink" target="_blank">
+					<img src="ALB review.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<p>Tested to show that traffic is distributed evenly to healthy EC2 instances
+			</p>
+			<div class="image-container">
+				<a href="ALB test.png" id="openImageLink" target="_blank">
+					<img src="ALB test.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+			<p>4. Set up autoscaling (ASG):</p>
+			<ul>
+			<li>
+				<p>An auto scaling group was created using the launch template</p>
+			</li>
+			<li>
+				<p>Set desired capacity - 2, minimum - 1, maximum - 4</p>
+			</li>
+			<li>
+				<p>Scaling policy defined on CPU utilization - scales out at 70% and scales in when CPU is below 30%</p>
+			</li>
+			</ul>
+			<div class="image-container">
+				<a href="auto scaling.png" id="openImageLink" target="_blank">
+					<img src="auto scaling.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+			<p>ASG details</p>
+			<div class="image-container">
+				<a href="auto scaling review.png" id="openImageLink" target="_blank">
+					<img src="auto scaling review.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+			<p>5. Test auto scaling by simulating traffic </p>
+			<ul>
+			<li>
+				<p>Deployed the web application to the EC2 instances, this was accessed through the Load Balancer's public DNS</p>
+			</li>
+			<li>
+				<p>Simulated using Apache Jmeter with 100 users to test auto scaling in action</p>
+			</li>
+			</ul>
+			<div class="image-container">
+				<a href="test traffic.png" id="openImageLink" target="_blank">
+					<img src="test traffic.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<p>Instances were automatically launched based on the defined scaling policy</p>
+			<div class="image-container">
+				<a href="instance check.png" id="openImageLink" target="_blank">
+					<img src="instance check.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<p>6. Implement Monitoring and Alerts</p>
+			<ul>
+			<li>
+				<p>I used CloudWatch to monitor metrics such as CPU utilization and memory usage. </p>
+			</li>
+			<li>
+				<p>Set up CloudWatch alarms to notify me if metrics cross certain thresholds</p>
+			</li>
+			</ul>
+
+			<p>Cloudwatch metrics: </p>
+			<p>The 'Request Count' metric shows the number of requests handled by the load balancer, as you can see in the spike when the test was initiated at 18.00 for 5 mins </p>
+
+			<div class="image-container">
+				<a href="metric.png" id="openImageLink" target="_blank">
+					<img src="metric.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<p>Target Response Time metric shown here from 18.00, it presents an increase that indicates a higher load on the servers.</p>
+			<div class="image-container">
+				<a href="target response time.png" id="openImageLink" target="_blank">
+					<img src="target response time.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<p>Active connection count shows that the load balancer is handling many simultaneous requests starting from 18.00</p>
+			<div class="image-container">
+				<a href="active connections.png" id="openImageLink" target="_blank">
+					<img src="active connections.png" alt="Site Architecture" width="1000" height="900">
+				</a>
+			</div>
+
+			<span class="degree">Project outcomes</span>
+
+			<p>
+			<ul>
+				<li>
+					<p>The system was designed to have no single point of failure which was achieved via load balancing. </p>
+				</li>
+				<li>
+					<p>Multiple availability zones enabled EC2 high availability, which would route traffic to an operational AZ in the event of an outage. </p>
+				</li>
+				<li>
+					<p>Auto scaling allows the system to automatically increase the number of instances to meet high traffic demands and save money by stopping the instances that are no longer needed</p>
+				</li>
+				</ul>
+				</p>
+
+
+
+
+
