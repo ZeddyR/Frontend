@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Portfolio - Zayd Rahman</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+	<div class="resume">
+	
+		<div class="top-section">
+			<div class="headshot-container">
+				<img src="Cloud Logo.jpg" alt="Zayd" class="logo">
+			</div>
+			<div class="contact-info">
+				<h1>Zayd Rahman</h1>
+				<p>Aspiring AWS Cloud Solutions Architect | 
+					<i class="fas fa-envelope"></i> 
+					<a href="mailto:r.zayd@icloud.com">r.zayd@icloud.com</a>
+				</p>
+				<div class="container">
+					<p>
+						<a href="https://www.linkedin.com/in/zarahman/" target="_blank">
+							<i class="fab fa-linkedin"></i> LinkedIn profile
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="nav-container">
+			<div class="hamburger" onclick="toggleMenu()">
+				<i class="fas fa-bars"></i>
+			</div>
+			<div class="nav-links">
+				<a href="index.html"><i class="fas fa-home"></i> HOME </a>
+				<a href="PROJECTS.html">PROJECTS</a>
+				<a href="QUALIFICATIONS.html">QUALIFICATIONS</a>
+				<a href="KEY SKILLS.html">KEY SKILLS</a>
+				<a href="WORK HISTORY.html">WORK HISTORY</a>
+				<a href="EDUCATION.html">EDUCATION</a>
+			</div>
+		</div>
+		
+		<div class="abstract-banner"></div>
+
+	<section class="resume-section" id="projects">
+		<h2>Projects</h2>
+	
+		<div class="project">
+			<div class="project-container">
+				<a href="CLOUD PORTFOLIO.html" class="project-link">
+					<div class="nav-overlay">
+						<div class="image-container">
+							<img src="Arch_Amazon-Simple-Storage-Service_64.png" alt="Cloud Portfolio" width="100" height="50">
+						</div>
+						<h3>Cloud Portfolio</h3>
+						<p>Demonstrates the use of Amazon S3, CloudFront, and Route53 to host this website.</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="project">
+			<div class="project-container">
+				<a href="Cloud migration.html" class="project-link">
+					<div class="nav-overlay">
+						<div class="image-container">
+							<img src="Arch_AWS-Application-Migration-Service_64@5x.png" alt="Migration" width="100" height="50">
+						</div>
+						<h3>Cloud Migration</h3>
+						<p>This project demonstrates the process of migrating an on-premise OS application to the AWS public cloud</p>
+					</div>
+				</a>
+		</div>
+	
+		<div class="project">
+			<div class="project-container">
+				<a href="HA web app.html" class="project-link">
+					<div class="nav-overlay">
+						<div class="image-container">
+							<img src="Arch_Elastic-Load-Balancing_64.png" alt="Highly Available Web Application" width="100" height="50">
+						</div>
+						<h3>Highly Available Web Application - Blog site</h3>
+						<p>This project demonstrates the implementation of a highly available and fault-tolerant web application using EC2 instances, Auto Scaling Groups, and Load Balancers to ensure uptime and reliability.</p>
+					</div>
+				</a>
+		</div>
+
+		<div class="project">
+			<div class="project-container">
+				<a href="https://github.com/ZeddyR/Frontend.git" id="openImageLink" target="_blank">
+					<div class="nav-overlay">
+						<div class="image-container">
+								<img src="pngimg.com - github_PNG65.png" alt="Site Architecture" width="200" height="100">
+							</a>
+						</div>
+						<p>Code files for this site can be found here</p>
+					</div>
+				</a>
+		</div>
+	</section>
+
+
+	<script>
+		// JavaScript to toggle the menu visibility
+		function toggleMenu() {
+			var menu = document.querySelector('.nav-links');
+			menu.classList.toggle('open');
+		}
+	</script>
+</body>
+</html>

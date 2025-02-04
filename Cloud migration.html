@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Portfolio - Zayd Rahman</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+	.image-container {
+		display: flex;          
+		justify-content: center; 
+		align-items: center;    
+		margin: 20px 0;         
+	}
+
+	.image-container img {
+		max-width: 100%;        
+		height: auto;          
+	}
+</style>
+</head>
+<body>
+
+	<div class="resume">
+	
+		<div class="top-section">
+			<div class="headshot-container">
+				<img src="Cloud Logo.jpg" alt="Zayd" class="logo">
+			</div>
+			<div class="contact-info">
+				<h1>Zayd Rahman</h1>
+				<p>Aspiring AWS Cloud Solutions Architect | 
+					<i class="fas fa-envelope"></i> 
+					<a href="mailto:zaydurrahman@hotmail.co.uk">zaydurrahman@hotmail.co.uk</a>
+				</p>
+				<div class="container">
+					<p>
+						<a href="https://www.linkedin.com/in/zarahman/" target="_blank">
+							<i class="fab fa-linkedin"></i> LinkedIn profile
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="nav-container">
+			<div class="hamburger" onclick="toggleMenu()">
+				<i class="fas fa-bars"></i>
+			</div>
+			<div class="nav-links">
+				<a href="index.html"><i class="fas fa-home"></i> HOME </a>
+				<a href="PROJECTS.html">PROJECTS</a>
+				<a href="QUALIFICATIONS.html">QUALIFICATIONS</a>
+				<a href="KEY SKILLS.html">KEY SKILLS</a>
+				<a href="WORK HISTORY.html">WORK HISTORY</a>
+				<a href="EDUCATION.html">EDUCATION</a>
+			</div>
+		</div>
+		
+		<div class="abstract-banner"></div>
+
+	<section class="resume-section" id=".main">
+		<a href="PROJECTS.html" class="back-to-projects">
+			<i class="fas fa-arrow-left" style="color: #4A90E2;"></i> Back to Projects
+		</a>
+
+        <h2>Cloud Migration</h2>
+			<h3>Overview:</h3>
+			<p>I was tasked with rehosting an OS using AWS tools. I used the VM import/export feature to import an image from its existing environment into an EC2 instance (lift and shift). The OS was exported from a hypervisor (VirtualBox), and then imported to S3 as an EC2 AMI using CLI. The necessary policies and permissions were added to my IAM user role to enable full programmatic access on S3 and EC2.</p>  
+			<p>Objectives:</p>
+				
+                <ul>
+                        <p>1. Stop the running VM in VirtualBox and then use export to OCI</p>
+                    
+                        <p>2. Using the CLI, upload the OVA file to S3</p>
+                    
+                        <p>3. Create an IAM role for VM Import/Export with S3, EC2, and KMS permissions</p>
+                    
+                        <p>4. Import the OVA file as an Amazon EC2 AMI</p>
+                    
+                        <p>5. Provision the new instance using the imported AMI!</p>
+                
+                </ul>
+
+				<div class="image-container">
+					<a href="cloud migration.jpeg" id="openImageLink" target="_blank">
+						<img src="cloud migration.jpeg" alt="Site Architecture" width="1000" height="900">
+					</a>
+				</div>
+
+			<p>This project was fundamental for me to understand the basics of migrating applications to the public cloud. This involved rehosting an application and utilising AWS CLI to achieve this. I had the option to use the AWS application migration service, however knowing that this is highly automated; I wanted to fully understand the migration process by creating the right compliance, configuration and security policies. The import/export feature also gives flexibility with the AMI and enables me to launch EC2 instances using my custom AMI any time.</p>
+       
+        <p>
+        <h3>Challenges:</h3>
+        </p>
+
+        <ul>
+            <li>OS - Initially I tried migrating a Ubuntu OS but experienced several issues as launching the system did not always work even on its original environment using virtual box. I managed to export its file as an OVA, but wasn’t confident in its reliability due to the launch issues. I decided to switch to a Windows 10 OS which operated much more smoothly 
+            </li>
+        
+            <li>Incorrect file paths – I entered the wrong file path on CLI during the upload process. I realised quickly that I need to save the files to a simple path/directory to avoid getting the script wrong on CLI</li>
+        
+            <li>No password access on the instance – I had to reset the administrator password to my new EC2 instance that hosted the OS. I troubleshooted several times using test instances. I had to detach a root volume and attach this to a helper instance which I used to reset the password on its CMD.  
+            </li>
+        </ul>
+
+        <p><h3>Step 1: Install Windows 10 on a virtual machine using the Virtual Box hypervisor</h3></p>
+
+        <ul>
+            <li>
+                <p>Download the Windows 10 iso from the Microsoft download site and Virtual box. 
+                    Run the ISO file through Virtual box</p>
+            </li>
+        </ul>
+                <p>Windows 10 installed and running: </p>
+				<div class="image-container">
+					<a href="Windows 10 Virtualbox.png" id="openImageLink" target="_blank">
+						<img src="Windows 10 Virtualbox.png" alt="Site Architecture" width="1000" height="900">
+					</a>
+				</div>
+
+<h3>Windows 11 running windows 10 VM using Virtual box:</h3>
+<div class="image-container">
+	<a href="virtualbox preview.png" id="openImageLink" target="_blank">
+		<img src="virtualbox preview.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<h3>Step 2: Upload the OVA file to the S3 Bucket</h3>
+<p>Using the AWS console, I created a new bucket for the VM import. A list of all buckets shown in the CLI, </p>
+<div class="image-container">
+	<a href="CLI bucket list.png" id="openImageLink" target="_blank">
+		<img src="CLI bucket list.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>File upload in progress. (As shown below I struggled with entering the correct path for the ova file)</p>
+<div class="image-container">
+	<a href="file upload.png" id="openImageLink" target="_blank">
+		<img src="file upload.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>OVA file upload completed and verified,</p>
+<div class="image-container">
+	<a href="upload complete.png" id="openImageLink" target="_blank">
+		<img src="upload complete.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<h3>Step 3: Attach policies to IAM user:</h3>
+<p>Using an existing IAM role, the following policies were added for enabling CLI programmatic access, AmazonS3FullAccess and AmazonEC2FullAccess</p>
+<div class="image-container">
+	<a href="IAM policies.png" id="openImageLink" target="_blank">
+		<img src="IAM policies.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<P>Trust relationship: Updated the trust relationship to allow EC2 services. Once enabled, EC2 can assume the role during operations like importing a VM or provisioning an instance.</P>
+<P>EC2 role created for VM import:</P>
+<div class="image-container">
+	<a href="ec2 role creation.png" id="openImageLink" target="_blank">
+		<img src="ec2 role creation.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>Modified Trust Policy:</p>
+<div class="image-container">
+	<a href="Trust policy.png" id="openImageLink" target="_blank">
+		<img src="Trust policy.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>"Principal.Service": "vmie.amazonaws.com": Grants permissions to the VM Import/Export service.
+    "Action": "sts:AssumeRole": Allows the service to assume the role.</p>
+
+<h3>Step 4: Import the OVA file as an Amazon EC2 AMI</h3>
+<p>I created a json script that provides details of the OVA file I will import and its location in the S3 bucket,</p>
+<div class="image-container">
+	<a href="ova json.png" id="openImageLink" target="_blank">
+		<img src="ova json.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>Updating the policy of the role which add the necessary permissions,</p>
+<div class="image-container">
+	<a href="role policy update.png" id="openImageLink" target="_blank">
+		<img src="role policy update.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>Import task in progress,</p>
+<div class="image-container">
+	<a href="Import task.png" id="openImageLink" target="_blank">
+		<img src="Import task.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>Import was successfully completed.</p>
+
+<h3>Step 5: Provision new instance using the imported AMI</h3>
+<p>Now I am able to launch a new EC2 instance using the imported AMI,</p>
+<div class="image-container">
+	<a href="Launch instance with AMI.png" id="openImageLink" target="_blank">
+		<img src="Launch instance with AMI.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<p>EC2 instance running successfully with the Custom Windows AMI,</p>
+<div class="image-container">
+	<a href="EC2 instance running.png" id="openImageLink" target="_blank">
+		<img src="EC2 instance running.png" alt="Site Architecture" width="1000" height="900">
+	</a>
+</div>
+
+<P>The last stage involved launching the instance via RDP, using the public IP, administrator user and password. I had an issue with decrypting the password on the AWS console and had to reset the administrator password to connect to the VM. This was done by detaching the root volume, then attaching this volume to a helper instance so I could reset the admin password on CMD. 
+ 
+    After resetting the password I successfully connected to the instance using RDP! 
+    </P>
+
+	<section class="resume-section" id=".main">
+		<a href="PROJECTS.html" class="back-to-projects">
+			<i class="fas fa-arrow-left" style="color: #4A90E2;"></i> Back to Projects
+		</a>
+
+	<script>
+		// JavaScript to toggle the menu visibility
+		function toggleMenu() {
+			var menu = document.querySelector('.nav-links');
+			menu.classList.toggle('open');
+		}
+	</script>
+	</body>
+	</html>

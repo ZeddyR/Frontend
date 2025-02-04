@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Portfolio - Zayd Rahman</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+	.image-container {
+		display: flex;          
+		justify-content: center; 
+		align-items: center;    
+		margin: 20px 0;         
+	}
+
+	.image-container img {
+		max-width: 100%;        
+		height: auto;          
+	}
+</style>
+</head>
+<body>
+
+	<div class="resume">
+	
+		<div class="top-section">
+			<div class="headshot-container">
+				<img src="Cloud Logo.jpg" alt="Zayd" class="logo">
+			</div>
+			<div class="contact-info">
+				<h1>Zayd Rahman</h1>
+				<p>Aspiring AWS Cloud Solutions Architect | 
+					<i class="fas fa-envelope"></i> 
+					<a href="mailto:zaydurrahman@hotmail.co.uk">zaydurrahman@hotmail.co.uk</a>
+				</p>
+				<div class="container">
+					<p>
+						<a href="https://www.linkedin.com/in/zarahman/" target="_blank">
+							<i class="fab fa-linkedin"></i> LinkedIn profile
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="nav-container">
+			<div class="hamburger" onclick="toggleMenu()">
+				<i class="fas fa-bars"></i>
+			</div>
+			<div class="nav-links">
+				<a href="index.html"><i class="fas fa-home"></i> HOME </a>
+				<a href="PROJECTS.html">PROJECTS</a>
+				<a href="QUALIFICATIONS.html">QUALIFICATIONS</a>
+				<a href="KEY SKILLS.html">KEY SKILLS</a>
+				<a href="WORK HISTORY.html">WORK HISTORY</a>
+				<a href="EDUCATION.html">EDUCATION</a>
+			</div>
+		</div>
+		
+		<div class="abstract-banner"></div>
+
+    <section class="resume-section" id="experience">
+		<a href="PROJECTS.html" class="back-to-projects">
+			<i class="fas fa-arrow-left" style="color: #4A90E2;"></i> Back to Projects
+		</a>
+		
+
+<p>
+	<h2>Cloud Portfolio</h2>
+</p>
+			<p>This site was created using serverless technologies on AWS including S3, Route53, Cloudfront CDN and ACM.
+				The site was coded using HTML, CSS and Javascript, these files were put into an S3 bucket and enabled with static website hosting. I set up the domain name and records
+				to point to the bucket using Route53. Lastly I created a certificate, linked it to a cloudfront distribution and updated the Route53 record to connect to that distribution for the site to be accessible.
+				<p>
+					<div class="image-container">
+						<a href="sitediagramhq.jpeg" id="openImageLink" target="_blank">
+							<img src="sitediagramhq.jpeg" alt="Site Architecture" width="1000" height="900">
+						</a>
+					</div>
+
+			<h3>Invalidation</h3>
+			<p>After creating a cloudfront distribution and linking this to my S3 endpoint bucket, initially everything worked well. After updating my files on S3 and accessing them via cloudfront, 
+				the web page loaded with the old files. The problem was the old files were still being cached by cloudfront, this required invalidating my cloudfront distribution as shown below<p>
+
+					<div class="image-container">
+						<a href="cloudfront invalidation.png" id="openImageLink" target="_blank">
+							<img src="cloudfront invalidation.png" alt="Site Architecture" width="900" height="800">
+						</a>
+					</div>
+			<p>When creating an Invalidation, I entered a wildcard /* to invalidate all as this forces cloudfront to get the latest files from the my S3 bucket</p>
+
+			
+<script>
+    // JavaScript to toggle the menu visibility
+    function toggleMenu() {
+        var menu = document.querySelector('.nav-links');
+        menu.classList.toggle('open');
+    }
+</script>
+</body>
+</html>
